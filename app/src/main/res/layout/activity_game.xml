@@ -12,11 +12,11 @@
             class="tiaodashen.bbz.DeviceListFragment"
             android:id="@+id/frag_list"
             android:layout_width="match_parent"
-            android:layout_height= "match_parent">
+            android:layout_height= "200dp">
             <!-- Preview: layout=@layout/row_devices -->
         </fragment>
         <fragment
-            class="tiaodashen.bbz.DeviceListFragment"
+            class="tiaodashen.bbz.DeviceDetailFragment"
             android:id="@+id/frag_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

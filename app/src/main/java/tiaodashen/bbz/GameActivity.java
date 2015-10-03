@@ -74,16 +74,16 @@ public class GameActivity extends AppCompatActivity implements ChannelListener, 
      * BroadcastReceiver receiving a state change event.
      */
     public void resetData() {
-        /*DeviceListFragment fragmentList = (DeviceListFragment) getFragmentManager()
+        DeviceListFragment fragmentList = (DeviceListFragment) getFragmentManager()
                 .findFragmentById(R.id.frag_list);
-        DeviceDetailFragment fragmentDetails = (DeviceDetailFragment) getFragmentManager()
-                .findFragmentById(R.id.frag_detail);
         if (fragmentList != null) {
             fragmentList.clearPeers();
         }
+        DeviceDetailFragment fragmentDetails = (DeviceDetailFragment) getFragmentManager()
+                .findFragmentById(R.id.frag_detail);
         if (fragmentDetails != null) {
             fragmentDetails.resetViews();
-        }*/
+        }
     }
 
     @Override
@@ -121,7 +121,7 @@ public class GameActivity extends AppCompatActivity implements ChannelListener, 
                 }
                 final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
                         .findFragmentById(R.id.frag_list);
-
+                fragment.onInitiateDiscovery();
                 manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
 
                     @Override
@@ -147,7 +147,6 @@ public class GameActivity extends AppCompatActivity implements ChannelListener, 
         DeviceDetailFragment fragment = (DeviceDetailFragment) getFragmentManager()
                 .findFragmentById(R.id.frag_detail);
         fragment.showDetails(device);
-
     }
 
     @Override
