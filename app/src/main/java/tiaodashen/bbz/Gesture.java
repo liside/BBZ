@@ -15,7 +15,6 @@ public abstract class Gesture {
             this.charge = 0;
         }
 
-
         public Gesture( String name, int charge ) {
             setName(name);
             setCharge(charge);
