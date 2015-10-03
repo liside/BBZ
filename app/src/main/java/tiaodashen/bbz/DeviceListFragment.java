@@ -61,6 +61,7 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
             case WifiP2pDevice.CONNECTED:
                 return "Connected";
             case WifiP2pDevice.FAILED:
+                Log.d(GameActivity.TAG, "Peer status : failed" );
                 return "Failed";
             case WifiP2pDevice.UNAVAILABLE:
                 return "Unavailable";

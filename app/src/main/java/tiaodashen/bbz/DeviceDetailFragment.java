@@ -3,6 +3,7 @@ package tiaodashen.bbz;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WpsInfo;
@@ -61,14 +62,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     progressDialog.dismiss();
                 }
                 progressDialog = ProgressDialog.show(getActivity(), "Press back to cancel",
-                        "Connecting to :" + device.deviceAddress, true, true
-//                        new DialogInterface.OnCancelListener() {
-//
-//                            @Override
-//                            public void onCancel(DialogInterface dialog) {
-//                                ((DeviceActionListener) getActivity()).cancelDisconnect();
-//                            }
-//                        }
+                        "Connecting to :" + device.deviceAddress, true, true,
+                        new DialogInterface.OnCancelListener() {
+
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                ((DeviceActionListener) getActivity()).cancelDisconnect();
+                            }
+                        }
                 );
                 ((DeviceActionListener) getActivity()).connect(config);
 
@@ -179,7 +180,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         view.setText("");
         view = (TextView) mContentView.findViewById(R.id.status_text);
         view.setText("");
-        mContentView.findViewById(R.id.btn_start_client).setVisibility(View.GONE);
         this.getView().setVisibility(View.GONE);
     }
 
@@ -204,7 +204,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         @Override
         protected String doInBackground(Void... params) {
             try {
-                ServerSocket serverSocket = new ServerSocket(8988);
+                ServerSocket serverSocket = new ServerSocket(8888);
                 Log.d(GameActivity.TAG, "Server: Socket opened");
                 Socket client = serverSocket.accept();
                 Log.d(GameActivity.TAG, "Server: connection done");
@@ -251,6 +251,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         @Override
         protected void onPreExecute() {
             statusText.setText("Opening a server socket");
+
         }
 
     }
