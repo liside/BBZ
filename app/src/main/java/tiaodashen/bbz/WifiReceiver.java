@@ -4,8 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.NetworkInfo;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
+import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.util.Log;
 /**
  * Created by Side on 10/3/15.
@@ -42,8 +44,8 @@ public class WifiReceiver extends BroadcastReceiver {
             // asynchronous call and the calling activity is notified with a
             // callback on PeerListListener.onPeersAvailable()
             if (manager != null) {
-                //manager.requestPeers(channel, (PeerListListener) activity.getFragmentManager()
-                //        .findFragmentById(R.id.frag_list));
+                manager.requestPeers(channel, (PeerListListener) activity.getFragmentManager()
+                        .findFragmentById(R.id.frag_list));
             }
             Log.d(GameActivity.TAG, "P2P peers changed");
         } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
@@ -55,18 +57,18 @@ public class WifiReceiver extends BroadcastReceiver {
             if (networkInfo.isConnected()) {
                 // we are connected with the other device, request connection
                 // info to find group owner IP
-                //DeviceDetailFragment fragment = (DeviceDetailFragment) activity
-                //        .getFragmentManager().findFragmentById(R.id.frag_detail);
-                //manager.requestConnectionInfo(channel, fragment);
+                DeviceDetailFragment fragment = (DeviceDetailFragment) activity
+                        .getFragmentManager().findFragmentById(R.id.frag_detail);
+                manager.requestConnectionInfo(channel, fragment);
             } else {
                 // It's a disconnect
                 activity.resetData();
             }
         } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
-            //DeviceListFragment fragment = (DeviceListFragment) activity.getFragmentManager()
-            //        .findFragmentById(R.id.frag_list);
-            //fragment.updateThisDevice((WifiP2pDevice) intent.getParcelableExtra(
-            //WifiP2pManager.EXTRA_WIFI_P2P_DEVICE));
+            DeviceListFragment fragment = (DeviceListFragment) activity.getFragmentManager()
+                    .findFragmentById(R.id.frag_list);
+            fragment.updateThisDevice((WifiP2pDevice) intent.getParcelableExtra(
+            WifiP2pManager.EXTRA_WIFI_P2P_DEVICE));
         }
     }
 }

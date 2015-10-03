@@ -29,8 +29,7 @@
                 android:id="@+id/btn_start_client"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="button3"
-                android:visibility="gone" />
+                android:text="button3" />
         </LinearLayout>
         <TextView
             android:id="@+id/device_address"
